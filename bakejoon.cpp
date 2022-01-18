@@ -5,11 +5,12 @@
 #include "Question5.h"
 #include "Question6.h"
 #include "Question7.h"
+#include "Question8.h"
 #include<stdio.h>
 
 int main()
 {
-	baekjoon2941();
+	baekjoon2869();
 	return 0;
 }
 
