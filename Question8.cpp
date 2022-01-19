@@ -124,11 +124,55 @@ void baekjoon2869()
 //ACM 호텔
 void baekjoon10250()
 {
+	int width = 0;
+	int height = 0;
+	int t;
+	scanf("%d", &t);
+
+	for (int i = 0; i < t; i++)
+	{
+		int h, w, n;
+		scanf("%d %d %d", &h, &w, &n);
+
+		if (n % h == 0)
+		{
+			width = n / h;
+			height = h;
+		}
+		else
+		{
+			width = (n / h) + 1;
+			height = n % h;
+		}
+			
+		if (width < 10)
+			printf("%d0%d\n", height, width);
+		else
+			printf("%d%d\n", height, width);
+	}
 }
 
 //부녀회장이 될테야
 void baekjoon2775()
 {
+	int t;
+	scanf("%d", &t);
+
+	for (int i = 0; i < t; i++)
+	{
+		int k, n;
+		scanf("%d", &k);
+		scanf("%d", &n);
+		int people = 1;
+		int _add = k + 1;
+		int add = 0;
+		
+		for (int j = 0; j < n; j++)
+		{
+
+		}
+
+	}
 }
 
 //설탕배달
