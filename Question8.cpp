@@ -163,26 +163,90 @@ void baekjoon2775()
 		int k, n;
 		scanf("%d", &k);
 		scanf("%d", &n);
-		int people = 1;
-		int _add = k + 1;
-		int add = 0;
 		
-		for (int j = 0; j < n; j++)
+		if (n == 1)
 		{
-
+			printf("1\n");
+			continue;
 		}
 
+		int** room;
+		room = new int* [k + 1];
+		for (int j = 0; j < k + 1; j++)
+			room[j] = new int[n];
+
+		for (int j = 0; j < k + 1; j++)
+		{
+			for (int l = 0; l < n; l++)
+			{
+				if (j == 0)
+					room[0][l] = l + 1;
+				else
+				{
+					if (l == 0)
+						room[j][0] = 1;
+					else
+						room[j][l] = room[j - 1][l] + room[j][l - 1];
+				}
+			}
+		}
+
+		printf("%d\n", room[k][n - 1]);
+
+		for (int j = 0; j < k + 1; j++)
+			delete[] room[j];
+		delete[] room;
 	}
 }
 
 //설탕배달
 void baekjoon2839()
 {
+	int n;
+	scanf("%d", &n);
+	int count = 0;
+
+	while (n > 0)
+	{
+		if (n % 5 == 0)
+		{
+			count += n / 5;
+			break;
+		}
+		else if (n % 3 == 0)
+		{
+			n -= 3;
+			count++;
+		}
+		else if (n > 5)
+		{
+			n -= 5;
+			count++;
+		}
+		else
+		{
+			count = -1;
+			break;
+		}
+	}
+	printf("%d\n", count);
 }
 
 //큰 수 A+B
+#include <string.h>
 void baekjoon10757()
 {
+	char a[10002];
+	char b[10002];
+	char c[10003];
+	memset(a, '\0', sizeof(char) * 10002);
+	memset(b, '\0', sizeof(char) * 10002);
+	memset(c, '\0', sizeof(char) * 10003);
+	scanf("%s %s", &a, &b);
+
+	int lenA = strlen(a);
+	int lenB = strlen(b);
+
 }
 
 //Fly me to the Alpha Centauri
