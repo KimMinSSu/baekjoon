@@ -234,22 +234,106 @@ void baekjoon2839()
 
 //큰 수 A+B
 #include <string.h>
+void strReverse(char* str, int len)
+{
+	int tmp = 0;
+	int i = 0;
+	int j = len - 1;
+	while (i < j)
+	{
+		tmp = str[i];
+		str[i] = str[j];
+		str[j] = tmp;
+
+		i++; j--;
+	}
+}
 void baekjoon10757()
 {
-	char a[10002];
-	char b[10002];
-	char c[10003];
-	memset(a, '\0', sizeof(char) * 10002);
-	memset(b, '\0', sizeof(char) * 10002);
-	memset(c, '\0', sizeof(char) * 10003);
-	scanf("%s %s", &a, &b);
+	char strA[10002] = { '\0' };
+	char strB[10002] = { '\0' };
+	char result[10003] = { '\0' };
+	scanf("%s %s", strA, strB);
 
-	int lenA = strlen(a);
-	int lenB = strlen(b);
+	int lenA = strlen(strA);
+	int lenB = strlen(strB);
+	int lenR = lenA > lenB ? lenA : lenB;
 
+	strReverse(strA, lenA);
+	strReverse(strB, lenB);
+
+	int a, b, c = 0;
+	for (int i = 0; i < lenR; i++)
+	{
+		a = strA[i] - '0';
+		b = strB[i] - '0';
+		if (a < 0) a = 0;
+		if (b < 0) b = 0;
+		int add = a + b + c;
+
+		if (add > 9)
+		{
+			result[i] = (add % 10) + '0';
+			c = 1;
+		}
+		else
+		{
+			result[i] = add + '0';
+			c = 0;
+		}
+	}
+
+	if (c == 1)
+	{
+		result[lenR] = '1';
+		lenR += 1;
+	}
+
+	strReverse(result, lenR);
+	
+	printf("%s\n", result);
 }
 
 //Fly me to the Alpha Centauri
 void baekjoon1011()
 {
+	int t;
+	scanf("%d", &t);
+
+	for (int k = 0; k < t; k++)
+	{
+		int start, dst;
+		scanf("%d %d", &start, &dst);
+		int count = 0;
+		int dis = dst - start;
+		int _dis = dis;
+		int mid = dis / 2;
+		int move = 1;
+
+		while (dis > 0)
+		{
+			if (_dis % 2 == 0)
+			{
+				
+			}
+			else if (_dis % 2 == 1)
+			{
+				if (move < mid)
+				{
+					dis -= move;
+					count++;
+					move++;
+				}
+				else
+				{
+					dis -= move;
+					count++;
+					move--;
+				}
+			}
+		}
+
+		printf("%d\n", count);
+	}
+	
 }
