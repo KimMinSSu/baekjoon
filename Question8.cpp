@@ -295,6 +295,39 @@ void baekjoon10757()
 }
 
 //Fly me to the Alpha Centauri
+/*
+1	1
+2	1 1
+3	1 1 1
+4	1 2 1
+5	1 2 1 1
+6	1 2 2 1
+7	1 2 2 1 1
+8	1 2 2 2 1
+9	1 2 3 2 1
+10	1 2 3 2 1 1
+11	1 2 3 2 2 1
+12	1 2 3 3 2 1
+13	1 2 3 3 2 1 1
+14	1 2 3 3 2 2 1
+15	1 2 3 3 3 2 1
+16	1 2 3 4 3 2 1
+17	1 2 3 4 3 2 1 1
+18	1 2 3 4 3 2 2 1
+19	1 2 3 4 3 3 2 1
+20	1 2 3 4 4 3 2 1
+21	1 2 3 4 4 3 2 1 1
+22	1 2 3 4 4 3 2 2 1
+23	1 2 3 4 4 3 3 2 1
+24	1 2 3 4 4 4 3 2 1
+25	1 2 3 4 5 4 3 2 1
+
+		2^2			3^2				4^2				5^2
+1 2 (3 3 / 4 4) (5 5 5 / 6 6 6) (7 7 7 7 / 8 8 8 8) (9 9 9 9 9 /)
+/전 숫자가 제곱
+
+*/
+#include <math.h>
 void baekjoon1011()
 {
 	int t;
@@ -302,38 +335,43 @@ void baekjoon1011()
 
 	for (int k = 0; k < t; k++)
 	{
-		int start, dst;
+		unsigned int start, dst;
 		scanf("%d %d", &start, &dst);
-		int count = 0;
 		int dis = dst - start;
-		int _dis = dis;
-		int mid = dis / 2;
-		int move = 1;
+		int move = 0;
 
-		while (dis > 0)
+		if (dis < 4)
 		{
-			if (_dis % 2 == 0)
-			{
-				
-			}
-			else if (_dis % 2 == 1)
-			{
-				if (move < mid)
-				{
-					dis -= move;
-					count++;
-					move++;
-				}
-				else
-				{
-					dis -= move;
-					count++;
-					move--;
-				}
-			}
+			printf("%d\n", dis);
+			continue;
 		}
+#if 0//시간 초과
+		int i = 0;
+		while (i * i < dis) 
+			i++;
 
-		printf("%d\n", count);
+		int i2 = i * i;
+		if (i2 != dis)
+			i--;
+
+		if (i2 > dis)
+			move = i * 2;
+		else
+			move = (i * 2) - 1;
+
+		printf("%d\n", move);
+#else
+		int i = sqrt(dis);
+		int i2 = i * i;
+
+		if (i2 == dis)
+			move = (i * 2) - 1;
+		else if (i2 < dis && dis <= i2 + i)
+			move = i * 2;
+		else
+			move = (i * 2) + 1;
+
+		printf("%d\n", move);
+#endif
 	}
-	
 }
