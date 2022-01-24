@@ -11,7 +11,7 @@
 
 int main()
 {
-	baekjoon9020();
+	baekjoon1002();
 	
 	return 0;
 }

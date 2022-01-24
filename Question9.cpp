@@ -224,24 +224,106 @@ void baekjoon9020()
 //직사각형에서 탈출
 void baekjoon1085()
 {
+	int x, y, w, h;
+	scanf("%d %d %d %d", &x, &y, &w, &h);
+
+	int disX, disY;
+	disX = w - x > x ? x : w - x;
+	disY = h - y > y ? y : h - y;
+
+	if (disX > disY)
+		printf("%d\n", disY);
+	else
+		printf("%d\n", disX);
 }
 
 //네 번째 점
 void baekjoon3009()
 {
+	int point[4][2];
+	for (int i = 0; i < 3; i++)
+		scanf("%d %d", &point[i][0], &point[i][1]);
+
+	if (point[0][0] == point[1][0])
+		point[3][0] = point[2][0];
+	else if (point[0][0] == point[2][0])
+			 point[3][0] = point[1][0];
+	else if (point[1][0] == point[2][0])
+			 point[3][0] = point[0][0];
+
+	if (point[0][1] == point[1][1])
+		point[3][1] = point[2][1];
+	else if (point[0][1] == point[2][1])
+			 point[3][1] = point[1][1];
+	else if (point[1][1] == point[2][1])
+			 point[3][1] = point[0][1];
+
+	printf("%d %d\n", point[3][0], point[3][1]);
 }
 
 //직각삼각형
 void baekjoon4153()
 {
+	while (true)
+	{
+		int a, b, c;
+		scanf("%d %d %d", &a, &b, &c);
+		if (a == 0 && b == 0 && c == 0)
+			break;
+
+		int a2 = a * a;
+		int b2 = b * b;
+		int c2 = c * c;
+
+		if (a2 + b2 == c2 ||
+			b2 + c2 == a2 ||
+			a2 + c2 == b2)
+			printf("right\n");
+		else
+			printf("wrong\n");
+	}
 }
 
 //택시 기하학
+#define M_PI 3.14159265358979323846
 void baekjoon3053()
 {
+	double r;
+	scanf("%lf", &r);
+
+	printf("%lf\n", r * r * M_PI);
+	printf("%lf\n", r * r * 2);
 }
 
 //터렛
+#include <math.h>
+
 void baekjoon1002()
 {
+	int t;
+	scanf("%d", &t);
+
+	for (int k = 0; k < t; k++)
+	{
+		int x1, y1, r1, x2, y2, r2;
+		scanf("%d %d %d %d %d %d", &x1, &y1, &r1, &x2, &y2, &r2);
+
+		if (x1 == x2 && y1 == y2 && r1 == r2)
+		{
+			printf("-1\n");
+			continue;
+		}
+
+		float dis1 = sqrtf((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+		float dis2 = r1 + r2;
+		float dis3 = r1 - r2;
+		if (dis3 < 0) dis3 *= -1;
+
+		if (dis3 < dis1 && dis1 < dis2)
+			printf("2\n");
+		else if (dis1 == dis2 || dis1 == dis3)
+			printf("1\n");
+		else
+			printf("0\n");
+	}
 }
