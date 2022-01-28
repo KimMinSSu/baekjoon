@@ -36,6 +36,42 @@ void baekjoon2798()
 //분해합
 void baekjoon2231()
 {
+	int n;
+	scanf("%d", &n);
+	int tmp;
+
+	int start = 0;
+	int digit = 0;
+	tmp = n;
+	while (tmp != 0)
+	{
+		tmp /= 10;
+		digit++;
+	}
+	start = n - (digit * 9);
+
+	int sum = 0;
+	bool check = false;
+	for (int i = start; i < n + 1; i++)
+	{
+		sum = tmp = i;
+		
+		while (tmp != 0)
+		{
+			sum += tmp % 10;
+			tmp /= 10;
+		}
+
+		if (sum == n)
+		{
+			check = true;
+			printf("%d\n", i);
+			break;
+		}
+	}
+
+	if (check == false)
+		printf("0\n");
 }
 
 //덩치
