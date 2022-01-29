@@ -77,11 +77,68 @@ void baekjoon2231()
 //덩치
 void baekjoon7568()
 {
+	int n;
+	scanf("%d", &n);
+	int** human = new int * [n];
+	int* rank = new int[n];
+
+	for (int i = 0; i < n; i++)
+	{
+		human[i] = new int[2];
+		int x, y;
+		scanf("%d %d", &x, &y);
+		human[i][0] = x;
+		human[i][1] = y;
+		rank[i] = 1;
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (i == j) continue;
+
+			if (human[i][0] < human[j][0] &&
+				human[i][1] < human[j][1])
+			{
+				rank[i]++;
+			}
+		}
+	}
+
+	for (int i = 0; i < n; i++)
+		printf("%d ", rank[i]);
+
+	for (int i = 0; i < n; i++)
+		delete[] human[i];
+	delete[] human;
+	delete[] rank;
 }
 
 //체스판 다시 칠하기
 void baekjoon1018()
 {
+	int n, m;
+	scanf("%d %d", &n, &m);
+
+	char** wb = new char * [n];
+	for (int i = 0; i < n; i++)
+	{
+		wb[i] = new char[m + 1];
+		for (int j = 0; j < m; j++)
+			scanf(" %c", &wb[i][j]);
+		wb[i][m] = '\0';
+	}
+	bool black = wb[0][0] == 'W' ? false : true;
+	int count = 0;
+
+	
+
+	printf("%d\n", count);
+
+	for (int i = 0; i < n; i++)
+		delete[] wb[i];
+	delete[] wb;
 }
 
 //영화감독 숌
