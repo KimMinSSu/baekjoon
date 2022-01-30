@@ -121,7 +121,7 @@ void baekjoon1018()
 	int n, m;
 	scanf("%d %d", &n, &m);
 
-	char** wb = new char * [n];
+	char** wb = new char* [n];
 	for (int i = 0; i < n; i++)
 	{
 		wb[i] = new char[m + 1];
@@ -129,10 +129,43 @@ void baekjoon1018()
 			scanf(" %c", &wb[i][j]);
 		wb[i][m] = '\0';
 	}
-	bool black = wb[0][0] == 'W' ? false : true;
-	int count = 0;
 
-	
+	bool black;
+	int count = 64;
+	int _count = 0;
+	for (int k = 0; k < n - 7; k++)
+	{
+		for (int l = 0; l < m - 7; l++)
+		{
+			for (int q = 0; q < 2; q++)
+			{
+				_count = 0;
+				black = q == 0 ? true : false;
+
+				for (int i = k; i < k + 8; i++)
+				{
+					for (int j = l; j < l + 8; j++)
+					{
+						if (black == true)
+						{
+							if (wb[i][j] == 'W')
+								_count++;
+							black = false;
+						}
+						else
+						{
+							if (wb[i][j] == 'B')
+								_count++;
+							black = true;
+						}
+					}
+					black = !black;
+				}
+				if (count > _count)
+					count = _count;
+			}
+		}
+	}
 
 	printf("%d\n", count);
 
