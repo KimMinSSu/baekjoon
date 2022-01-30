@@ -144,4 +144,68 @@ void baekjoon1018()
 //영화감독 숌
 void baekjoon1436()
 {
+	int n;
+	scanf("%d", &n);
+	int num = 666;
+	int _n = 0;
+
+	while (true)
+	{
+		int tmp = num;
+		int count = 0;
+		
+		while (tmp != 0)
+		{
+			int a = tmp % 10;
+
+			if (a == 6)
+				count++;
+			else
+				count = 0;
+
+			if (count == 3)
+			{
+				_n++;
+				break;
+			}
+
+			tmp /= 10;
+		}
+
+		if (n == _n)
+			break;
+		else
+			num++;
+	}
+
+	printf("%d\n", num);
+
+# if 0//이런 느낌으로 해서 10번은 틀린거 같음
+	int n;
+	scanf("%d", &n);
+	int num = 666;
+
+	while (true)
+	{
+		int tmp = num;
+		while (tmp % 1000 > 100)
+		{
+			if (tmp % 1000 == 666)
+			{
+				n--;
+				break;
+			}
+			else
+				tmp /= 10;
+		}
+
+		if (n == 0)
+			break;
+		else
+			num++;
+	}
+
+	printf("%d\n", num);
+
+#endif
 }
